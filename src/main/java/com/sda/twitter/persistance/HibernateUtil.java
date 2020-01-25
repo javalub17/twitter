@@ -4,6 +4,8 @@ package com.sda.twitter.persistance;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import static com.sda.twitter.utils.EnvironmentVariableUtil.getVariable;
+
 
 public class HibernateUtil {
 
@@ -15,6 +17,9 @@ public class HibernateUtil {
     private static SessionFactory buildSessionFactory() {
         try {
             return new Configuration()
+                    .setProperty(HIBERNATE_CONNECTION_URL, getVariable(HIBERNATE_CONNECTION_URL))
+                    .setProperty(HIBERNATE_CONNECTION_USERNAME, getVariable(HIBERNATE_CONNECTION_USERNAME))
+                    .setProperty(HIBERNATE_CONNECTION_PASSWORD, getVariable(HIBERNATE_CONNECTION_PASSWORD))
                     .configure()
                     .buildSessionFactory();
         } catch (Throwable ex) {
