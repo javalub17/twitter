@@ -16,6 +16,8 @@ public class LoginFilter implements Filter {
         HttpSession session = httpServletRequest.getSession();
         TbUser currentUser = (TbUser) session.getAttribute("currentUser");
         if (currentUser == null) {
+            final String requestURI = httpServletRequest.getRequestURI();
+            httpServletRequest.setAttribute("currentURI", requestURI);
             RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("login.jsp");
             requestDispatcher.forward(servletRequest, servletResponse);
         }
