@@ -13,8 +13,10 @@
 <jsp:include page="include/header.jsp"/>
 
 <main role="main" ng-app="articleApp">
+
     <div class="container">
         <div ng-controller="articleController" ng-init="init()">
+            <h2>{{weather.main.temp}}&deg;C</h2>
             <div ng-repeat="article in articles">
                 <div class="row d-flex justify-content-center">
                     <div class="col-5">
